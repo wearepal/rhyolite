@@ -3,7 +3,7 @@ from typing import List, Set, Union, Dict, Collection
 
 import pytest
 
-from dacite import from_dict, WrongTypeError
+from rhyolite import from_dict, WrongTypeError
 
 
 def test_from_dict_with_generic_collection():

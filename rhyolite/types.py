@@ -80,7 +80,7 @@ def extract_new_type(type_: Type) -> Type:
     return type_.__supertype__
 
 
-def is_init_var(type_: Type) -> bool:
+def is_init_var(type_: Union[Type, InitVar]) -> bool:
     return isinstance(type_, InitVar) or type_ is InitVar
 
 
@@ -127,6 +127,12 @@ def is_instance(value: Any, type_: Type) -> bool:
         if hasattr(type_, "type"):
             return is_instance(value, type_.type)
         return True
+    elif is_generic(type_) and extract_origin_collection(type_) is type:
+        inner_type = extract_generic(type_)[0]
+        try:
+            return issubclass(value, inner_type)
+        except TypeError:
+            return False
     else:
         try:
             # As described in PEP 484 - section: "The numeric tower"

@@ -1,7 +1,7 @@
 from dataclasses import dataclass, InitVar
 from typing import Optional
 
-from dacite import from_dict
+from rhyolite import from_dict
 
 
 def test_from_dict_with_init_var():
