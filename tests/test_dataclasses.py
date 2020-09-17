@@ -3,7 +3,7 @@ from typing import Optional
 
 import pytest
 
-from dacite.dataclasses import get_default_value_for_field, create_instance, DefaultValueNotFoundError
+from rhyolite.dataclasses import get_default_value_for_field, create_instance, DefaultValueNotFoundError
 
 
 def test_get_default_value_for_field_with_default_value():

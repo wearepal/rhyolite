@@ -1,28 +1,28 @@
-# ignimbrite
+# rhyolite
 
 This is a fork of [dacite](https://github.com/konradhalas/dacite).
-Just like "dacite", "ignimbrite" is a type of volcanic rock.
+Just like "dacite", "rhyolite" is a type of volcanic rock.
 
 This module simplifies creation of data classes ([PEP 557][pep-557])
 from dictionaries.
 
 ## Installation
 
-To install ignimbrite, simply use `pip`:
+To install rhyolite, simply use `pip`:
 
 ```
-$ pip install ignimbrite
+$ pip install rhyolite
 ```
 
 ## Requirements
 
-Minimum Python version supported by `ignimbrite` is 3.6.
+Minimum Python version supported by `rhyolite` is 3.6.
 
 ## Quick start
 
 ```python
 from dataclasses import dataclass
-from ignimbrite import from_dict
+from rhyolite import from_dict
 
 
 @dataclass
@@ -45,7 +45,7 @@ assert user == User(name='John', age=30, is_active=True)
 
 ## Features
 
-ignimbrite supports following features:
+rhyolite supports following features:
 
 - nested structures
 - (basic) types checking
@@ -70,30 +70,30 @@ support type hints by design.
 However, even if you are using data classes, you have to create their
 instances somehow. In many such cases, your input is a dictionary - it
 can be a payload from a HTTP request or a raw data from a database. If
-you want to convert those dictionaries into data classes, `ignimbrite` is
+you want to convert those dictionaries into data classes, `rhyolite` is
 your best friend.
 
 This library was originally created to simplify creation of type hinted
 data transfer objects (DTO) which can cross the boundaries in the
 application architecture.
 
-It's important to mention that `ignimbrite` is not a data validation library.
+It's important to mention that `rhyolite` is not a data validation library.
 There are dozens of awesome data validation projects and it doesn't make
-sense to duplicate this functionality within `ignimbrite`. If you want to 
-validate your data first, you should combine `ignimbrite` with one of data 
+sense to duplicate this functionality within `rhyolite`. If you want to 
+validate your data first, you should combine `rhyolite` with one of data 
 validation library.
 
 Please check [Use Case](#use-case) section for a real-life example.
 
 ## Usage
 
-ignimbrite is based on a single function - `ignimbrite.from_dict`. This function
+rhyolite is based on a single function - `rhyolite.from_dict`. This function
 takes 3 parameters:
 
 - `data_class` - data class type
 - `data` - dictionary of input data
 - `config` (optional) - configuration of the creation process, instance
-of `ignimbrite.Config` class
+of `rhyolite.Config` class
 
 Configuration is a (data) class with following fields:
 
@@ -161,7 +161,7 @@ assert result == A(x='test', y=None)
 
 ### Unions
 
-If your field can accept multiple types, you should use `Union`. ignimbrite
+If your field can accept multiple types, you should use `Union`. rhyolite
 will try to match data with provided types one by one. If none will
 match, it will raise `UnionMatchError` exception.
 
@@ -194,7 +194,7 @@ assert result == C(u=B(y=1))
 
 ### Collections
 
-ignimbrite supports fields defined as collections. It works for both - basic
+rhyolite supports fields defined as collections. It works for both - basic
 types and data classes.
 
 ```python
@@ -309,7 +309,7 @@ assert data == X(Y("text"))
 
 ### Types checking
 
-There are rare cases when `ignimbrite` built-in type checker can not validate 
+There are rare cases when `rhyolite` built-in type checker can not validate 
 your types (e.g. custom generic class) or you have such functionality 
 covered by other library and you don't want to validate your types twice. 
 In such case you can disable type checking with `Config(check_types=False)`.
@@ -343,10 +343,10 @@ exception.
 ### Strict unions match
 
 `Union` allows to define multiple possible types for a given field. By default 
-`ignimbrite` is trying to find the first matching type for a provided data and it 
+`rhyolite` is trying to find the first matching type for a provided data and it 
 returns instance of this type. It means that it's possible that there are other 
 matching types further on the `Union` types list. With `strict_unions_match` 
-only a single match is allowed, otherwise `ignimbrite` raises `StrictUnionMatchError`.
+only a single match is allowed, otherwise `rhyolite` raises `StrictUnionMatchError`.
 
 ## Exceptions
 
@@ -384,20 +384,20 @@ first within an issue.
 
 ### How to start
 
-Clone `ignimbrite` repository:
+Clone `rhyolite` repository:
 
 ```
-$ git clone git@github.com:konradhalas/ignimbrite.git
+$ git clone git@github.com:konradhalas/rhyolite.git
 ```
 
 Create and activate virtualenv in the way you like:
 
 ```
-$ python3 -m venv ignimbrite-env
-$ source ignimbrite-env/bin/activate
+$ python3 -m venv rhyolite-env
+$ source rhyolite-env/bin/activate
 ```
 
-Install all `ignimbrite` dependencies:
+Install all `rhyolite` dependencies:
 
 ```
 $ pip install -e .[dev]
@@ -420,7 +420,7 @@ something more "robust".
 
 Following example is a simple `flask` app - it has single `/products` endpoint.
 You can use this endpoint to "create" product in your system. Our core 
-`create_product` function expects data class as a parameter. Thanks to `ignimbrite` 
+`create_product` function expects data class as a parameter. Thanks to `rhyolite` 
 we can easily build such data class from `POST` request payload.
 
 
@@ -430,7 +430,7 @@ from typing import List
 
 from flask import Flask, request, Response
 
-import ignimbrite
+import rhyolite
 
 app = Flask(__name__)
 
@@ -455,7 +455,7 @@ def create_product(product_data: ProductData) -> None:
 
 @app.route("/products", methods=['POST'])
 def products():
-    product_data = ignimbrite.from_dict(
+    product_data = rhyolite.from_dict(
         data_class=ProductData,
         data=request.get_json(),
     )
@@ -465,7 +465,7 @@ def products():
 ```
 
 What if we want to validate our data (e.g. check if `code` has 6 characters)? 
-Such features are out of scope of `ignimbrite` but we can easily combine it with 
+Such features are out of scope of `rhyolite` but we can easily combine it with 
 one of data validation library. Let's try with 
 [marshmallow](https://marshmallow.readthedocs.io).
 
@@ -505,7 +505,7 @@ def products():
             status=400, 
             mimetype='application/json',
         )
-    product_data = ignimbrite.from_dict(
+    product_data = rhyolite.from_dict(
         data_class=ProductData,
         data=result,
     )
@@ -513,11 +513,11 @@ def products():
     return Response(status=201)
 ```
 
-Still `ignimbrite` helps us to create data class from "raw" dict with validated data.
+Still `rhyolite` helps us to create data class from "raw" dict with validated data.
 
 ## Changelog
 
-Follow `ignimbrite` updates in [CHANGELOG][changelog].
+Follow `rhyolite` updates in [CHANGELOG][changelog].
 
 ## Authors
 
@@ -525,4 +525,4 @@ Created by [Konrad Hałas][halas-homepage].
 
 [pep-557]: https://www.python.org/dev/peps/pep-0557/
 [halas-homepage]: https://konradhalas.pl
-[changelog]: https://github.com/konradhalas/ignimbrite/blob/master/CHANGELOG.md
+[changelog]: https://github.com/konradhalas/rhyolite/blob/master/CHANGELOG.md

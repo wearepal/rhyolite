@@ -4,7 +4,7 @@ from typing import Optional, List, Union
 
 import pytest
 
-from dacite import (
+from rhyolite import (
     from_dict,
     Config,
     ForwardReferenceError,
