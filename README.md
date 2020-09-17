@@ -1,7 +1,7 @@
 # ignimbrite
 
 This is a fork of [dacite](https://github.com/konradhalas/dacite).
-Just like "dacite", "ignimbrite" is a type of rock.
+Just like "dacite", "ignimbrite" is a type of volcanic rock.
 
 This module simplifies creation of data classes ([PEP 557][pep-557])
 from dictionaries.
