@@ -1,7 +1,7 @@
 from setuptools import setup
 
 setup(
-    name="dacite",
+    name="rhyolite",
     version="1.5.1",
     description="Simple creation of data classes from dictionaries.",
     long_description=open("README.md", encoding="utf-8").read(),
@@ -24,8 +24,8 @@ setup(
     ],
     python_requires=">=3.6",
     keywords="dataclasses",
-    packages=["dacite"],
-    package_data={"dacite": ["py.typed"]},
+    packages=["rhyolite"],
+    package_data={"rhyolite": ["py.typed"]},
     install_requires=['dataclasses;python_version<"3.7"'],
     extras_require={"dev": ["pytest>=5", "pytest-cov", "coveralls", "black", "mypy", "pylint"]},
 )

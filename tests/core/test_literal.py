@@ -3,8 +3,8 @@ from typing import Optional
 
 import pytest
 
-from dacite import from_dict
-from dacite.exceptions import WrongTypeError
+from rhyolite import from_dict
+from rhyolite.exceptions import WrongTypeError
 from tests.common import literal_support
 
 

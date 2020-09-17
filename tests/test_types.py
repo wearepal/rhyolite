@@ -3,7 +3,7 @@ from typing import Optional, Union, List, Any, Dict, NewType, TypeVar, Generic, 
 
 import pytest
 
-from dacite.types import (
+from rhyolite.types import (
     is_optional,
     extract_optional,
     is_generic,
