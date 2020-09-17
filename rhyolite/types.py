@@ -80,7 +80,7 @@ def extract_new_type(type_: Type) -> Type:
     return type_.__supertype__
 
 
-def is_init_var(type_: Type) -> bool:
+def is_init_var(type_: Union[Type, InitVar]) -> bool:
     return isinstance(type_, InitVar) or type_ is InitVar
 
 
