@@ -2,13 +2,13 @@ from setuptools import setup
 
 setup(
     name="rhyolite",
-    version="1.5.1",
+    version="2.0.0.dev1",
     description="Simple creation of data classes from dictionaries.",
     long_description=open("README.md", encoding="utf-8").read(),
     long_description_content_type="text/markdown",
-    author="Konrad Hałas",
+    author="Konrad Hałas and PAL",
     author_email="halas.konrad@gmail.com",
-    url="https://github.com/konradhalas/dacite",
+    url="https://github.com/predictive-analytics-lab/rhyolite",
     license="MIT",
     classifiers=[
         "Development Status :: 5 - Production/Stable",
