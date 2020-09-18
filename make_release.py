@@ -3,6 +3,8 @@ from pathlib import Path
 
 from git import Repo
 
+BASE_VERSION = "1.5."
+
 
 def main() -> None:
     """Run the script."""
@@ -17,10 +19,10 @@ def main() -> None:
     print("updated release branch")
 
     # find out the version number
-    tags_minor_versions = [tag.name.split(".")[-1] for tag in repo.tags]
+    tags_minor_versions = [tag.name.split(".")[-1] for tag in repo.tags if tag.name.startswith(f"v{BASE_VERSION}")]
     latest_minor_version = max(int(mv) for mv in tags_minor_versions if mv.isdigit())
-    old_version = f"1.5.{latest_minor_version}"
-    new_version = f"1.5.{latest_minor_version + 1}"
+    old_version = f"{BASE_VERSION}{latest_minor_version}"
+    new_version = f"{BASE_VERSION}{latest_minor_version + 1}"
     print(f"new version will be: {new_version}")
 
     # change version in setup.py
