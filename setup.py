@@ -2,7 +2,7 @@ from setuptools import setup
 
 setup(
     name="rhyolite",
-    version="1.5.2",
+    version="1.5.3",
     description="Simple creation of data classes from dictionaries.",
     long_description=open("README.md", encoding="utf-8").read(),
     long_description_content_type="text/markdown",
