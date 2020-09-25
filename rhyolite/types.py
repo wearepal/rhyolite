@@ -5,7 +5,10 @@ T = TypeVar("T", bound=Any)
 
 
 def transform_value(
-    type_hooks: Mapping[Union[type, object], Callable[[Any], Any]], cast: List[Type], target_type: Type, value: Any
+    type_hooks: Mapping[Union[type, object], Callable[[Any], Any]],
+    cast: List[Type],
+    target_type: Type,
+    value: Any,
 ) -> Any:
     if target_type in type_hooks:
         value = type_hooks[target_type](value)
@@ -22,13 +25,17 @@ def transform_value(
             return None
         target_type = extract_optional(target_type)
         return transform_value(type_hooks, cast, target_type, value)
-    if is_generic_collection(target_type) and isinstance(value, extract_origin_collection(target_type)):
+    if is_generic_collection(target_type) and isinstance(
+        value, extract_origin_collection(target_type)
+    ):
         collection_cls = value.__class__
         if issubclass(collection_cls, dict):
             key_cls, item_cls = extract_generic(target_type)
             return collection_cls(
                 {
-                    transform_value(type_hooks, cast, key_cls, key): transform_value(type_hooks, cast, item_cls, item)
+                    transform_value(type_hooks, cast, key_cls, key): transform_value(
+                        type_hooks, cast, item_cls, item
+                    )
                     for key, item in value.items()
                 }
             )
@@ -111,7 +118,9 @@ def is_instance(value: Any, type_: Type) -> bool:
             else:
                 if len(tuple_types) != len(value):
                     return False
-                return all(is_instance(item, item_type) for item, item_type in zip(value, tuple_types))
+                return all(
+                    is_instance(item, item_type) for item, item_type in zip(value, tuple_types)
+                )
         if isinstance(value, Mapping):
             key_type, val_type = extract_generic(type_)
             for key, val in value.items():
