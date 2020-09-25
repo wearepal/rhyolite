@@ -180,7 +180,10 @@ def test_from_dict_with_strict_unions_match_and_ambiguous_match():
     with pytest.raises(StrictUnionMatchError) as exception_info:
         from_dict(Z, data, Config(strict_unions_match=True))
 
-    assert str(exception_info.value) == 'can not choose between possible Union matches for field "u": X, Y'
+    assert (
+        str(exception_info.value)
+        == 'can not choose between possible Union matches for field "u": X, Y'
+    )
 
 
 def test_from_dict_with_strict_unions_match_and_single_match():

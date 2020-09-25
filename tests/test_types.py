@@ -304,11 +304,16 @@ def test_transform_value_with_generic_sequence_and_matching_item():
 
 
 def test_transform_value_with_generic_sequence_and_matching_sequence():
-    assert transform_value({List[int]: lambda x: list(reversed(x))}, [], List[int], [1, 2]) == [2, 1]
+    assert transform_value({List[int]: lambda x: list(reversed(x))}, [], List[int], [1, 2]) == [
+        2,
+        1,
+    ]
 
 
 def test_transform_value_with_generic_sequence_and_matching_both_item_and_sequence():
-    assert transform_value({List[int]: lambda x: list(reversed(x)), int: int}, [], List[int], ["1", "2"]) == [2, 1]
+    assert transform_value(
+        {List[int]: lambda x: list(reversed(x)), int: int}, [], List[int], ["1", "2"]
+    ) == [2, 1]
 
 
 def test_transform_value_without_matching_generic_sequence():
@@ -328,7 +333,9 @@ def test_transform_value_with_generic_mapping():
 
 
 def test_transform_value_with_nested_generic_mapping():
-    assert transform_value({str: str, int: int}, [], Dict[str, Dict[str, int]], {1: {2: "3"}}) == {"1": {"2": 3}}
+    assert transform_value({str: str, int: int}, [], Dict[str, Dict[str, int]], {1: {2: "3"}}) == {
+        "1": {"2": 3}
+    }
 
 
 def test_transform_value_with_new_type():

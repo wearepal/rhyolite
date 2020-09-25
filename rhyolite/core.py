@@ -4,7 +4,12 @@ from typing import TypeVar, Type, Optional, get_type_hints, Mapping, Any
 
 from rhyolite.config import Config
 from rhyolite.data import Data
-from rhyolite.dataclasses import get_default_value_for_field, create_instance, DefaultValueNotFoundError, get_fields
+from rhyolite.dataclasses import (
+    get_default_value_for_field,
+    create_instance,
+    DefaultValueNotFoundError,
+    get_fields,
+)
 from rhyolite.exceptions import (
     ForwardReferenceError,
     WrongTypeError,
@@ -55,7 +60,10 @@ def from_dict(data_class: Type[T], data: Data, config: Optional[Config] = None) 
             try:
                 field_data = data[field.name]
                 transformed_value = transform_value(
-                    type_hooks=config.type_hooks, cast=config.cast, target_type=field.type, value=field_data
+                    type_hooks=config.type_hooks,
+                    cast=config.cast,
+                    target_type=field.type,
+                    value=field_data,
                 )
                 value = _build_value(type_=field.type, data=transformed_value, config=config)
             except DaciteFieldError as error:
@@ -75,7 +83,9 @@ def from_dict(data_class: Type[T], data: Data, config: Optional[Config] = None) 
         else:
             post_init_values[field.name] = value
 
-    return create_instance(data_class=data_class, init_values=init_values, post_init_values=post_init_values)
+    return create_instance(
+        data_class=data_class, init_values=init_values, post_init_values=post_init_values
+    )
 
 
 def _build_value(type_: Type, data: Any, config: Config) -> Any:
@@ -98,7 +108,10 @@ def _build_value_for_union(union: Type, data: Any, config: Config) -> Any:
             # noinspection PyBroadException
             try:
                 data = transform_value(
-                    type_hooks=config.type_hooks, cast=config.cast, target_type=inner_type, value=data
+                    type_hooks=config.type_hooks,
+                    cast=config.cast,
+                    target_type=inner_type,
+                    value=data,
                 )
             except Exception:  # pylint: disable=broad-except
                 continue
@@ -125,4 +138,7 @@ def _build_value_for_collection(collection: Type, data: Any, config: Config) -> 
             (key, _build_value(type_=extract_generic(collection)[1], data=value, config=config))
             for key, value in data.items()
         )
-    return data.__class__(_build_value(type_=extract_generic(collection)[0], data=item, config=config) for item in data)
+    return data.__class__(
+        _build_value(type_=extract_generic(collection)[0], data=item, config=config)
+        for item in data
+    )
