@@ -27,5 +27,7 @@ setup(
     packages=["rhyolite"],
     package_data={"rhyolite": ["py.typed"]},
     install_requires=['dataclasses;python_version<"3.7"'],
-    extras_require={"dev": ["pytest>=5", "pytest-cov", "coveralls", "black", "mypy", "pylint"]},
+    extras_require={
+        "dev": ["pytest>=5", "pytest-cov", "coveralls", "black", "mypy", "pylint", "isort"]
+    },
 )

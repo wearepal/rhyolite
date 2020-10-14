@@ -3,7 +3,7 @@ from typing import Any, NewType
 
 import pytest
 
-from rhyolite import from_dict, MissingValueError, WrongTypeError
+from rhyolite import MissingValueError, WrongTypeError, from_dict
 
 
 def test_from_dict_with_correct_data():

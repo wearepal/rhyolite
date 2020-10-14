@@ -3,7 +3,7 @@ from typing import List, Type
 
 import pytest
 
-from rhyolite import from_dict, Config, WrongTypeError
+from rhyolite import Config, WrongTypeError, from_dict
 
 
 def test_from_dict_with_type_parameter():
