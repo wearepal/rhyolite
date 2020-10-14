@@ -1,9 +1,9 @@
 from dataclasses import dataclass
-from typing import List, Set, Union, Dict, Collection
+from typing import Collection, Dict, List, Set, Union
 
 import pytest
 
-from rhyolite import from_dict, WrongTypeError
+from rhyolite import WrongTypeError, from_dict
 
 
 def test_from_dict_with_generic_collection():

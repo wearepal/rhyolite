@@ -1,4 +1,4 @@
-from dataclasses import dataclass, InitVar
+from dataclasses import InitVar, dataclass
 from typing import Optional
 
 from rhyolite import from_dict

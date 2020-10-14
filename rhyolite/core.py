@@ -1,33 +1,33 @@
 import copy
 from dataclasses import is_dataclass
-from typing import TypeVar, Type, Optional, get_type_hints, Mapping, Any
+from typing import Any, Mapping, Optional, Type, TypeVar, get_type_hints
 
 from rhyolite.config import Config
 from rhyolite.data import Data
 from rhyolite.dataclasses import (
-    get_default_value_for_field,
-    create_instance,
     DefaultValueNotFoundError,
+    create_instance,
+    get_default_value_for_field,
     get_fields,
 )
 from rhyolite.exceptions import (
-    ForwardReferenceError,
-    WrongTypeError,
     DaciteError,
-    UnionMatchError,
-    MissingValueError,
     DaciteFieldError,
-    UnexpectedDataError,
+    ForwardReferenceError,
+    MissingValueError,
     StrictUnionMatchError,
+    UnexpectedDataError,
+    UnionMatchError,
+    WrongTypeError,
 )
 from rhyolite.types import (
-    is_instance,
-    is_generic_collection,
-    is_union,
     extract_generic,
-    is_optional,
-    transform_value,
     extract_origin_collection,
+    is_generic_collection,
+    is_instance,
+    is_optional,
+    is_union,
+    transform_value,
 )
 
 T = TypeVar("T")

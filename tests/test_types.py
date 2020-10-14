@@ -1,24 +1,24 @@
 from dataclasses import InitVar
-from typing import Optional, Union, List, Any, Dict, NewType, TypeVar, Generic, Collection, Tuple
+from typing import Any, Collection, Dict, Generic, List, NewType, Optional, Tuple, TypeVar, Union
 
 import pytest
 
 from rhyolite.types import (
-    is_optional,
-    extract_optional,
-    is_generic,
-    is_union,
-    is_generic_collection,
-    extract_origin_collection,
-    is_instance,
     extract_generic,
-    is_new_type,
     extract_new_type,
-    transform_value,
-    is_literal,
+    extract_optional,
+    extract_origin_collection,
+    is_generic,
+    is_generic_collection,
     is_init_var,
+    is_instance,
+    is_literal,
+    is_new_type,
+    is_optional,
+    is_union,
+    transform_value,
 )
-from tests.common import literal_support, init_var_type_support
+from tests.common import init_var_type_support, literal_support
 
 
 def test_is_union_with_union():

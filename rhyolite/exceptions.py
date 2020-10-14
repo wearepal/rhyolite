@@ -1,4 +1,4 @@
-from typing import Any, Type, Optional, Set, Dict
+from typing import Any, Dict, Optional, Set, Type
 
 
 def _name(type_: Type) -> str:

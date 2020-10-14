@@ -1,9 +1,9 @@
 from dataclasses import dataclass
-from typing import Optional, List, Union, Dict
+from typing import Dict, List, Optional, Union
 
 import pytest
 
-from rhyolite import from_dict, UnionMatchError
+from rhyolite import UnionMatchError, from_dict
 
 
 def test_from_dict_with_union_of_builtin_types():

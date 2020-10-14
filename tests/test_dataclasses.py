@@ -1,12 +1,12 @@
-from dataclasses import dataclass, fields, field
+from dataclasses import dataclass, field, fields
 from typing import Optional
 
 import pytest
 
 from rhyolite.dataclasses import (
-    get_default_value_for_field,
-    create_instance,
     DefaultValueNotFoundError,
+    create_instance,
+    get_default_value_for_field,
 )
 
 
