@@ -1,5 +1,7 @@
 # rhyolite
 
+### The reason for this fork has become moot, so we put it in archive mode.
+
 ### This is a fork of [dacite](https://github.com/konradhalas/dacite).
 
 (Just like "dacite", "rhyolite" is a type of volcanic rock.)
